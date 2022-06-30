@@ -7,8 +7,8 @@ function App() {
   const [textSearch, setTextSearch] = useState('')
 
   const [people, setPeople] = useState([])
-  const [currentCharacter, setCurrentCharacter] = useState(1)
-  const [details, setDetails] = useState({})
+  const [currentCharacter, setCurrentCharacter] = useState(0)
+  const [details, setDetails] = useState(null)
 
   const [page, setPage] = useState(1)
   
@@ -21,11 +21,11 @@ function App() {
   }, [page])
 
   useEffect(() => {
-    // if(currentCharacter !== 0) {
+    if(currentCharacter !== 0) {
       getCharacter(currentCharacter)
         .then(setDetails)
         .catch(handleError)
-    // }
+    }
   }, [currentCharacter])
 
   const handleError = err => {
@@ -47,7 +47,7 @@ function App() {
     if(event.key !== 'Enter') return
 
     inputSearch.current.value = ''
-    setDetails({})
+    setDetails(null)
     searchCharacter(textSearch)
       .then(setPeople)
       .catch(handleError)

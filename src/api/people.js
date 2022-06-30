@@ -1,6 +1,8 @@
+import { urlStarWars } from '../urls'
+
 export async function getPeople(page) {
     try{
-        const response = await fetch(`http://swapi.dev/api/people/?page=${page}`)
+        const response = await fetch(`${urlStarWars}/people/?page=${page}`)
         if(!response.ok) {
             throw new NetworkError()
         }
@@ -12,13 +14,13 @@ export async function getPeople(page) {
 }
 
 export async function getCharacter(id = 1) {
-    const response = await fetch(`http://swapi.dev/api/people/${id}`)
+    const response = await fetch(`${urlStarWars}/people/${id}`)
     const data = await response.json()
     return data
 }
 
 export async function searchCharacter(name) {
-    const response = await fetch(`http://swapi.dev/api/people/?search=${name}`)
+    const response = await fetch(`${urlStarWars}/people/?search=${name}`)
     const data = await response.json()
     return data
 }
